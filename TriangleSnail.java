@@ -48,7 +48,6 @@ public class TriangleSnail {
 
     public static void main(String[] args){
         TriangleSnail ts = new TriangleSnail();
-
         int[] result = ts.solution(4);
     }
 }
