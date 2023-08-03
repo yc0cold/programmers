@@ -2,47 +2,53 @@ import java.util.Arrays;
 
 public class TriangleSnail {
     public int[] solution(int n) {
-        int arrLen = n*(n+1)/2;
+        int [] answer = new int[n*(n+1)/2];
+        int [][] arr = new int[n][n];
 
-        int[][] temp = new int[n][n];
-        int block = n; //턴당 최대 움직일 수 있는 횟수
-        int x = -1;
-        int y = 0;
-        int num = 1;
+        int x = 0;
+        int y = -1;
+        int count = 0;
 
-        while(block > 0){
-            // down
-            for(int i=0; i<block; i++){
-                x++;
-                temp[x][y] = num++;
-            }
-            block--;
-
-            // right
-            for(int j=0; j<block; j++){
+        while(n > 0){
+            //down
+            for(int i=0; i<n; i++){
+                count++;
                 y++;
-                temp[x][y] = num++;
+                arr[y][x] = count;
             }
-            block--;
+            n--;
 
-            // left
-            for(int k=0; k<block; k++){
+            //right
+            for(int j=0; j<n; j++){
+                x++;
+                count++;
+                System.out.println("x = " + x);
+                System.out.println("y = " + y);
+                arr[y][x] = count;
+            }
+            n--;
+
+            //up
+            for(int k=0; k<n; k++){
                 x--;
                 y--;
-                temp[x][y] = num++;
-            }
-            block--;
-        }
+                count++;
+                arr[y][x] = count;
 
-        // 2 차원 배열 -> 1차원 배열
-        int [] answer = new int[arrLen];
-        int count =0 ;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<=i; j++){
-                answer[count++] = temp[i][j];
+            }
+            n--;
+        }
+        int point = 0;
+        // 2차원 배열 => 1차원 배열
+        for(int i=0; i<arr.length; i++){
+            for(int j=0; j<= i; j++){
+                if(arr[i][j] != 0){
+                    answer[point] = arr[i][j];
+                    point ++;
+                }
             }
         }
-
+        System.out.println("Arrays.toString(answer) = " + Arrays.toString(answer));
         return answer;
     }
 

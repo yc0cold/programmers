@@ -4,18 +4,18 @@ public class MakeHamBurger {
 
         int n = ingredient.length;
 
-        for(int num = 1; num < (1<<n); num++){
+        for(int i=1; i<(1<<n); i++){
             int kSum = 0;
             int sSum = 0;
-            for(int idx = 0; idx < n; idx++){
-                if((num & (1 << idx)) != 0){
+            for(int idx=0; idx<n; idx++){
+                if((i & (1<<idx)) != 0){
                     kSum += ingredient[idx][0];
                     sSum += ingredient[idx][1];
                 }
             }
 
             if(kSum <= k && sSum >= s){
-                answer ++;
+                answer++;
             }
         }
         return answer;
